@@ -9,7 +9,7 @@ The application searches public sources, extracts information from HTML/PDF/YouT
 ```text
                          ┌─────────────────────┐
                          │       FastAPI       │
-                         │   POST /api/analyze │
+                         │  POST /api/analyze  │
                          └──────────┬──────────┘
                                     │
                                     ▼
@@ -25,32 +25,32 @@ The application searches public sources, extracts information from HTML/PDF/YouT
                                     ▼
                            Source Extraction
                                     │
-                  ┌─────────────────┼─────────────────┐
-                  ▼                 ▼                 ▼
-                HTML               PDF             YouTube
-             Trafilatura         PyMuPDF          Transcript
-                  │                 │                 │
-                  └─────────────────┼─────────────────┘
+                 ┌─────────────────┼─────────────────┐
+                 ▼                 ▼                 ▼
+               HTML               PDF             YouTube
+            Trafilatura         PyMuPDF         Transcript
+                 │                 │                 │
+                 └─────────────────┼─────────────────┘
                                     ▼
                             Context Batching
                                     │
                                     ▼
                          Source Summarization LLM
                                     │
-                  ┌─────────────────┼─────────────────┐
-                  ▼                 ▼                 ▼
-             Entity Summary    Address Summary    News Summary
-                  │                 │                 │
-                  ▼                 ▼                 ▼
-                LLM 1             LLM 2             LLM 3
-                  │                 │                 │
-                  └─────────────────┼─────────────────┘
+                 ┌─────────────────┼─────────────────┐
+                 ▼                 ▼                 ▼
+           Entity Summary    Address Summary    News Summary
+                 │                 │                 │
+                 ▼                 ▼                 ▼
+               LLM 1             LLM 2             LLM 3
+                 │                 │                 │
+                 └─────────────────┼─────────────────┘
                                     ▼
                                   LLM 4
-                           Final Risk Assessment
+                          Final Risk Assessment
                                     │
                                     ▼
-                            FinalOSDDResult
+                             FinalOSDDResult
 ```
 
 ### Project Structure
@@ -58,11 +58,14 @@ The application searches public sources, extracts information from HTML/PDF/YouT
 ```text
 aml-osdd-analyzer/
 │
-├── main.py
-├── models.py
-├── prompts.py
-├── scraper.py
-├── summarizer.py
+├── src/
+│   └── aml_osdd_helper/
+│       ├── __init__.py
+│       ├── main.py
+│       ├── models.py
+│       ├── prompts.py
+│       ├── scraper.py
+│       └── summarizer.py
 │
 ├── logs/
 │   └── aml_osdd_logs.log
@@ -171,10 +174,16 @@ ollama list
 
 ## Running the Application
 
-Start the FastAPI server:
+Start the FastAPI development server using `uv`:
 
 ```bash
-uv run uvicorn main:app --reload
+uv run fastapi dev src/aml_osdd_helper/main.py
+```
+
+Alternatively, you can run it with Uvicorn directly:
+
+```bash
+uv run uvicorn src.aml_osdd_helper.main:app --reload
 ```
 
 The API will be available at:

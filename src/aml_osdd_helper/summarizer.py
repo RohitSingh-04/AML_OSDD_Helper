@@ -1,5 +1,5 @@
-from models import BatchSummary, NegativeNewsBatchSummary
-import prompts
+from .models import BatchSummary, NegativeNewsBatchSummary
+import aml_osdd_helper.prompts as prompts
 
 CONTENT_TYPES = ("entity_search", "negative_search")
 
@@ -70,9 +70,9 @@ def create_batches(sources: dict[str, str], context_size: int) -> list[str]:
 
 async def summarize(sources: dict[str, str], entity: str, llm , context_size: int = 4000, summary_context_size: int = 3000, content_type: str = CONTENT_TYPES[0]) -> list:
 
-    prompt = prompts.SOURCE_SUMMARY_PROMPT if content_type == CONTENT_TYPES[0] else prompts.NEGATIVE_NEWS_SUMMARY_PROMPT
+    base_prompt = prompts.SOURCE_SUMMARY_PROMPT if content_type == CONTENT_TYPES[0] else prompts.NEGATIVE_NEWS_SUMMARY_PROMPT
 
-    prompt_tokens = calculate_tokens(prompt)
+    prompt_tokens = calculate_tokens(base_prompt)
 
     batch_context_size = (context_size - prompt_tokens - 100) 
 
@@ -88,7 +88,7 @@ async def summarize(sources: dict[str, str], entity: str, llm , context_size: in
 
         output_tokens = max(1, remaining_summary_tokens // remaining_batches)
 
-        prompt = prompt.format(entity = entity, output_tokens = output_tokens)
+        prompt = base_prompt.format(entity = entity, output_tokens = output_tokens)
         prompt += f"""SEARCH RESULT BATCH: {batch}"""
 
         structured_llm = llm.with_structured_output(BatchSummary) if CONTENT_TYPES[0] else llm.with_structured_output(NegativeNewsBatchSummary)

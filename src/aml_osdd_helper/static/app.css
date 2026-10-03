@@ -1,0 +1,417 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+
+/* =========================================
+   GLASS UI
+========================================= */
+
+.glass {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 20px 80px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input-field {
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.input-field::placeholder {
+    color: #4b5563;
+}
+
+.input-field:focus {
+    background: rgba(255, 255, 255, 0.055);
+
+    border-color: rgba(34, 211, 238, .5);
+
+    box-shadow:
+        0 0 0 4px rgba(34, 211, 238, .06),
+        0 0 30px rgba(34, 211, 238, .05);
+
+    outline: none;
+}
+
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.grid-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 70%
+        );
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loader-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #22d3ee;
+
+    animation:
+        loaderDot 1.2s infinite ease-in-out;
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.loader-dot:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes loaderDot {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(.5);
+        opacity: .3;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   RESULT ANIMATION
+========================================= */
+
+.result-card {
+    animation:
+        resultIn .55s ease-out both;
+}
+
+@keyframes resultIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   DATA ROW
+========================================= */
+
+.data-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 12px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+}
+
+.data-row:last-child {
+    border-bottom: 0;
+}
+
+
+/* =========================================
+   SOURCES
+========================================= */
+
+.source-link {
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.source-link:hover {
+    transform: translateY(-2px);
+
+    background: rgba(255,255,255,.06);
+
+    border-color:
+        rgba(34,211,238,.25);
+}
+
+
+/* =========================================
+   RISK METER
+========================================= */
+
+.risk-meter {
+    width: 100%;
+
+    max-width: 330px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.risk-svg {
+    width: 100%;
+
+    height: auto;
+
+    overflow: visible;
+}
+
+
+/*
+    Individual meter segments.
+
+    The actual colors are assigned
+    dynamically by JavaScript.
+*/
+
+.risk-segment {
+    transition:
+        opacity .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+
+/*
+    Inactive segments become dark.
+*/
+
+.risk-segment.inactive {
+    opacity: .16;
+
+    filter:
+        saturate(.25)
+        brightness(.45);
+}
+
+
+/*
+    Active segment glow.
+*/
+
+.risk-segment.active {
+    opacity: 1;
+
+    filter:
+        saturate(1.15)
+        brightness(1.05)
+        drop-shadow(
+            0 0 5px currentColor
+        );
+}
+
+
+/* =========================================
+   NEEDLE
+========================================= */
+
+.risk-needle {
+    transform-origin:
+        160px 130px;
+
+    transition:
+        transform 1s
+        cubic-bezier(.16, 1, .3, 1);
+}
+
+
+/*
+    Needle line
+*/
+
+.risk-needle line {
+    stroke: #e5e7eb;
+
+    stroke-width: 4;
+
+    stroke-linecap: round;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(255,255,255,.4)
+        );
+}
+
+
+/*
+    Needle center
+*/
+
+.risk-needle circle:first-of-type {
+    fill: #d1d5db;
+
+    stroke: #6b7280;
+
+    stroke-width: 2;
+}
+
+.risk-needle circle:last-of-type {
+    fill: #111827;
+}
+
+
+/* =========================================
+   SCORE
+========================================= */
+
+.risk-score {
+    font-size: 4rem;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -0.06em;
+
+    transition:
+        color .5s ease;
+}
+
+
+.risk-level {
+    margin-top: 10px;
+
+    font-size: 1.35rem;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    transition:
+        color .5s ease;
+}
+
+
+/* =========================================
+   SCALE LABEL
+========================================= */
+
+.risk-scale {
+    width: 250px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #4b5563;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: .12em;
+}
+
+
+/* =========================================
+   RISK COLORS
+========================================= */
+
+.risk-low {
+    color: #34d399;
+}
+
+.risk-medium {
+    color: #facc15;
+}
+
+.risk-high {
+    color: #fb923c;
+}
+
+.risk-critical {
+    color: #ef4444;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 640px) {
+
+    .risk-meter {
+        max-width: 290px;
+    }
+
+    .risk-score {
+        font-size: 3.5rem;
+    }
+
+    .risk-scale {
+        width: 220px;
+    }
+}

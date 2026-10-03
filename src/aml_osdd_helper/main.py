@@ -3,18 +3,25 @@ import json
 import logging
 import traceback
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import sys
 from langchain_ollama import ChatOllama
-from models import EntitySearchResult, AddressSearchResult, NegativeNewsResult, FinalAssessment, FinalOSDDResult, AnalyzeRequest
-from scraper import perform_osdd_searches
-import prompts
-import summarizer
+from .models import EntitySearchResult, AddressSearchResult, NegativeNewsResult, FinalAssessment, FinalOSDDResult, AnalyzeRequest
+from .scraper import perform_osdd_searches
+import aml_osdd_helper.prompts as prompts
+import aml_osdd_helper.summarizer as summarizer
+from pathlib import Path
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # Configure the logging setup to save to file and show on console
 logger = logging.getLogger("aml_osdd_helper")
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
@@ -39,6 +46,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "dolphin3:latest")
 
@@ -78,13 +90,13 @@ async def analyze_entity(request: AnalyzeRequest):
         #start summarizing
         logger.info("Summarizing entity sources...")
         entity_summary = await summarizer.summarize_sources(entity_search_bucket, entity_name, llm)
-
+        logger.debug(f"[summary result] {entity_summary}")
         logger.info("Summarizing address sources...")
         address_search_summary = await summarizer.summarize_sources(address_search_bucket, entity_name, llm)
-
+        logger.debug(f"[summary result] {address_search_summary}")
         logger.info("Summarizing negative news sources...")
         negative_news_summary = await summarizer.summarize_negative_sources(negative_news_bucket, entity_name, llm)
-
+        logger.debug(f"[summary result] {negative_news_summary}")
         #start analysis
         logger.info("[LLM 1]: Executing entity analysis")
         entity_prompt = prompts.ENTITY_PROMPT.format(entity=entity_name) + "\n\nSEARCH RESULTS:\n" + json.dumps([summary.model_dump() for summary in entity_summary], ensure_ascii=False)
@@ -136,6 +148,7 @@ async def analyze_entity(request: AnalyzeRequest):
         )
 
         logger.info(f"[OSDD ANALYSIS COMPLETE] Successfully analyzed: {entity_name}")
+        logger.debug(f"[Final Output] {final_result.model_dump_json()}")
         return final_result
 
     except HTTPException:
@@ -155,9 +168,11 @@ async def analyze_entity(request: AnalyzeRequest):
 
 
 @app.get("/")
-async def root():
-    return {
-        "status": "running",
-        "service": "AML OSDD Analyzer",
-        "model": MODEL_NAME
-    }
+async def root(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={
+            "model": MODEL_NAME
+        }
+    )

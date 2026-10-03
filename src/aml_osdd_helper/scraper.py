@@ -5,6 +5,7 @@ import serpapi
 import trafilatura
 import pymupdf
 import re
+import concurrent.futures
 
 load_dotenv()
 SERPAPI_API_KEY = os.getenv("SERPAPI_API_KEY")
@@ -100,10 +101,19 @@ def extract_data(url: str) -> str | None:
 
 def extract_datas(urls: list[str]) -> dict:
     data = {}
-    for url in urls:
-        temp_data = extract_data(url)
-        if temp_data:
-            data[url] = temp_data
+    
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+
+        future_to_url = {executor.submit(extract_data, url): url for url in urls}
+        for future in concurrent.futures.as_completed(future_to_url):
+            url = future_to_url[future]
+            try:
+                temp_data = future.result()
+                if temp_data:
+                    data[url] = temp_data
+            except Exception as exc:
+                raise Exception(f"{url} generated an exception: {exc}")
+                
     return data
 
 def perform_osdd_searches(entity, address = ""):

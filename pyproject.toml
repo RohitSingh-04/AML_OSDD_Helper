@@ -1,7 +1,7 @@
 [project]
 name = "aml-osdd-helper"
 version = "0.1.0"
-description = "Add your description here"
+description = "AI-powered Open Source Due Diligence (OSDD) assistant for Anti-Money Laundering investigations."
 readme = "README.md"
 authors = [
     { name = "Rohit Singh", email = "rsingh.py@gmail.com" }
@@ -11,6 +11,7 @@ dependencies = [
     "fastapi[standard]>=0.141.1",
     "google-search-results>=2.4.2",
     "httpx>=0.28.1",
+    "jinja2>=3.1.6",
     "langchain>=1.4.3",
     "langchain-community>=0.4.2",
     "langchain-core>=1.6.5",
@@ -24,7 +25,7 @@ dependencies = [
 ]
 
 [project.scripts]
-aml-osdd-helper = "aml_osdd_helper:main"
+aml-osdd-helper = "src.aml_osdd_helper.main:app"
 
 [build-system]
 requires = ["uv_build>=0.12.18,<0.13.0"]
