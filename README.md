@@ -91,7 +91,7 @@ aml_osdd_helper/
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/)
 - Ollama
-- A compatible Ollama model (e.g., `dolphin3:latest`)
+- A compatible Ollama model
 - SerpAPI account/API key
 
 ## Installation
@@ -127,7 +127,7 @@ Start Ollama:
 ollama serve
 ```
 
-Pull your desired model if it is not already installed:
+Pull your desired model if it is not already installed (e.g., dolphin3):
 
 ```bash
 ollama pull dolphin3:latest
@@ -135,21 +135,21 @@ ollama pull dolphin3:latest
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root. It must include the following variables:
 
 ```env
-SERPAPI_API_KEY=your_serpapi_api_key
-OLLAMA_MODEL=dolphin3:latest
-OLLAMA_CONCURRENCY_LIMIT=3
+SERPAPI_API_KEY="your key here"
+OLLAMA_MODEL="choosen model"
+OLLAMA_CONCURRENCY_LIMIT=int of concurrent request of ollama
 ```
 
-### Required Variables
+### Variable Descriptions
 
 | Variable | Description |
 |---|---|
 | `SERPAPI_API_KEY` | API key used for Google and YouTube searches |
-| `OLLAMA_MODEL` | Ollama model used by the application (default: `dolphin3:latest`) |
-| `OLLAMA_CONCURRENCY_LIMIT`| Controls how many parallel LLM distillation tasks run at once |
+| `OLLAMA_MODEL` | Ollama model used by the application (e.g., `dolphin3:latest`) |
+| `OLLAMA_CONCURRENCY_LIMIT`| Controls how many parallel LLM distillation tasks run at once (e.g., `3`) |
 
 Check installed Ollama models with:
 
