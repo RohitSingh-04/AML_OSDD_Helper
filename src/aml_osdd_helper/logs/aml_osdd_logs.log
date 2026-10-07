@@ -1,0 +1,423 @@
+2026-10-07 19:00:16 [INFO] [AML_OSDD] AML OSDD Backend Initializing...
+2026-10-07 19:00:16 [INFO] [AML_OSDD] Target LLM Model: qwen2.5:3b
+2026-10-07 19:00:16 [INFO] [AML_OSDD] Base Directory: C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper
+2026-10-07 19:00:16 [INFO] [AML_OSDD] Log Destination: C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\logs\aml_osdd_logs.log
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Commencing OSDD investigation for Entity: 'Lashkar-e-Taiba', Address: ''
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Initiating perform_osdd_searches...
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Scraping execution concluded successfully.
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Sources harvested: 13 total across 3 buckets (Entity: 3, Address: 5, Negative News: 6)
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Dispatched extraction task for bucket: Entity Search (3 URLs)
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Dispatched extraction task for bucket: Address Search (5 URLs)
+2026-10-07 19:00:41 [INFO] [AML_OSDD] Dispatched extraction task for bucket: Negative News Search (6 URLs)
+2026-10-07 19:01:04 [INFO] [AML_OSDD] All bucket evidence extractions completed successfully.
+2026-10-07 19:01:04 [INFO] [AML_OSDD] Executing final compliance risk synthesis with Ollama...
+2026-10-07 19:01:48 [INFO] [AML_OSDD] OSDD Analysis finalized for 'Lashkar-e-Taiba'. Risk Level: Low (Score: 15)
+2026-10-07 19:03:49 [INFO] [AML_OSDD] AML OSDD Backend Shutting Down.
+2026-10-07 19:03:53 [INFO] [AML_OSDD] AML OSDD Backend Initializing...
+2026-10-07 19:03:53 [INFO] [AML_OSDD] Target LLM Model: qwen2.5:3b
+2026-10-07 19:03:53 [INFO] [AML_OSDD] Base Directory: C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper
+2026-10-07 19:03:53 [INFO] [AML_OSDD] Log Destination: C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\logs\aml_osdd_logs.log
+2026-10-07 19:09:39 [INFO] [AML_OSDD] AML OSDD Backend Shutting Down.
+2026-10-07 19:10:28 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-07 19:10:28 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-07 19:10:28 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-07 19:10:28 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-07 19:10:28 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-07 19:10:28 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 19:10:28 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-07 19:10:28 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 19:10:28 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-07 19:10:47 [INFO] aml_osdd: Distilling [address_search] source: https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n
+2026-10-07 19:10:50 [INFO] aml_osdd: Distilling [address_search] source: https://www.youtube.com/watch?v=fPZHABWo-mA
+2026-10-07 19:10:57 [INFO] aml_osdd: Distilling [address_search] source: https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf
+2026-10-07 19:11:11 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm
+2026-10-07 19:11:20 [WARNING] aml_osdd: Fallback text extraction for https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana due to parsing note: Invalid json output: {
+  "properties": {
+    "findings": {
+      "description": "Factual findings from this source relative to AML/KYC background",
+      "title": "Findings",
+      "type": "string"
+    },
+    "identified_addresses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Identified Addresses",
+      "type": "array"
+    },
+    "identified_related_entities": {
+      items": {
+        "type": "string"
+      },
+      "title": "Identified Related Entities",
+      "type": "array"
+    },
+    "negative_news_identified": {
+      "default": false,
+      "title": "Negative News Identified",
+      "type": "boolean"
+    },
+    "negative_news_details": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Negative News Details"
+    },
+    "sanction_or_pep_flags": {
+      anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sanction Or Pep Flags"
+    }
+  },
+  "required": [
+    "findings"
+  ]
+}
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 19:11:20 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/
+2026-10-07 19:11:24 [WARNING] aml_osdd: Fallback text extraction for https://www.jstor.org/stable/resrep05591 due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 19:11:24 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba
+2026-10-07 19:11:31 [INFO] aml_osdd: Distilling [negative_news_search] source: https://mappingmilitants.org/profiles/lashkar-e-taiba
+2026-10-07 19:12:01 [WARNING] aml_osdd: Fallback text extraction for https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 19:12:01 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba
+2026-10-07 19:12:36 [WARNING] aml_osdd: Fallback text extraction for https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 19:12:36 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx
+2026-10-07 19:12:47 [WARNING] aml_osdd: Fallback text extraction for https://mappingmilitants.org/profiles/lashkar-e-taiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 19:13:17 [WARNING] aml_osdd: Fallback text extraction for https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 19:13:17 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-07 19:13:17 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-07 19:15:13 [INFO] aml_osdd: OSDD assessment complete for 'Lashkar-e-Taiba'. Risk Level: High, Score: 85
+2026-10-07 20:39:11 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-07 20:39:11 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-07 20:39:11 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-07 20:39:11 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-07 20:39:11 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-07 20:39:11 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 20:39:11 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-07 20:39:11 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 20:39:11 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-07 20:40:30 [INFO] aml_osdd: Distilling [address_search] source: https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n
+2026-10-07 20:40:50 [INFO] aml_osdd: Distilling [address_search] source: https://www.youtube.com/watch?v=fPZHABWo-mA
+2026-10-07 20:41:16 [INFO] aml_osdd: Distilling [address_search] source: https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf
+2026-10-07 20:42:25 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm
+2026-10-07 20:43:12 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/
+2026-10-07 20:43:50 [WARNING] aml_osdd: Fallback text extraction for https://www.jstor.org/stable/resrep05591 due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 20:43:50 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba
+2026-10-07 20:46:19 [WARNING] aml_osdd: Fallback text extraction for https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf due to parsing note: Invalid json output: {
+  "properties": {
+    "findings": {
+      "description": "Factual findings from this source relative to AML/KYC background",
+      "title": "Findings",
+      "type": "string"
+    },
+    "identified_addresses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Identified Addresses",
+      "type": "array"
+    },
+    "identified_related_entities": {
+      items: {
+        "type": "string"
+      },
+      "title": "Identified Related Entities",
+      "type": "array"
+    },
+    "negative_news_identified": {
+      "default": false,
+      "title": "Negative News Identified",
+      "type": "boolean"
+    },
+    "negative_news_details": {
+      anyOf: [
+        { "type": "string" },
+        { "type": "null" }
+      ],
+      default: null,
+      "title": "Negative News Details"
+    },
+    "sanction_or_pep_flags": {
+      anyOf: [
+        { "type": "string" },
+        { "type": "null" }
+      ],
+      default: null,
+      "title": "Sanction Or Pep Flags"
+    }
+  },
+  "required": [
+    "findings"
+  ]
+}
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 20:46:19 [INFO] aml_osdd: Distilling [negative_news_search] source: https://mappingmilitants.org/profiles/lashkar-e-taiba
+2026-10-07 20:47:37 [WARNING] aml_osdd: Fallback text extraction for https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 20:47:37 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba
+2026-10-07 20:47:38 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx
+2026-10-07 20:48:37 [WARNING] aml_osdd: Fallback text extraction for https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/ due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 20:50:49 [WARNING] aml_osdd: Fallback text extraction for https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 20:51:41 [WARNING] aml_osdd: Fallback text extraction for https://mappingmilitants.org/profiles/lashkar-e-taiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 20:51:41 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-07 20:51:41 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-07 21:02:11 [INFO] aml_osdd: OSDD assessment complete for 'Lashkar-e-Taiba'. Risk Level: High, Score: 85
+2026-10-07 22:26:28 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-07 22:26:28 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-07 22:26:28 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-07 22:26:28 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-07 22:26:28 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-07 22:26:28 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 22:26:28 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-07 22:26:28 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 22:26:28 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-07 22:26:30 [WARNING] aml_osdd: Fallback text extraction for https://www.jstor.org/stable/resrep05591 due to parsing note: All connection attempts failed
+2026-10-07 22:26:30 [INFO] aml_osdd: Distilling [address_search] source: https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n
+2026-10-07 22:26:30 [WARNING] aml_osdd: Fallback text extraction for https://www.youtube.com/watch?v=qtT3wYjI_M0 due to parsing note: All connection attempts failed
+2026-10-07 22:26:30 [WARNING] aml_osdd: Fallback text extraction for https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi due to parsing note: All connection attempts failed
+2026-10-07 22:26:30 [WARNING] aml_osdd: Fallback text extraction for https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana due to parsing note: All connection attempts failed
+2026-10-07 22:26:30 [WARNING] aml_osdd: Fallback text extraction for https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi due to parsing note: All connection attempts failed
+2026-10-07 22:26:30 [INFO] aml_osdd: Distilling [address_search] source: https://www.youtube.com/watch?v=fPZHABWo-mA
+2026-10-07 22:26:30 [INFO] aml_osdd: Distilling [address_search] source: https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf
+2026-10-07 22:26:30 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm
+2026-10-07 22:26:30 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/
+2026-10-07 22:26:32 [WARNING] aml_osdd: Fallback text extraction for https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n due to parsing note: All connection attempts failed
+2026-10-07 22:26:32 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba
+2026-10-07 22:26:32 [WARNING] aml_osdd: Fallback text extraction for https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf due to parsing note: All connection attempts failed
+2026-10-07 22:26:32 [WARNING] aml_osdd: Fallback text extraction for https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm due to parsing note: All connection attempts failed
+2026-10-07 22:26:32 [WARNING] aml_osdd: Fallback text extraction for https://www.youtube.com/watch?v=fPZHABWo-mA due to parsing note: All connection attempts failed
+2026-10-07 22:26:32 [WARNING] aml_osdd: Fallback text extraction for https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/ due to parsing note: All connection attempts failed
+2026-10-07 22:26:32 [INFO] aml_osdd: Distilling [negative_news_search] source: https://mappingmilitants.org/profiles/lashkar-e-taiba
+2026-10-07 22:26:32 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba
+2026-10-07 22:26:32 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx
+2026-10-07 22:26:34 [WARNING] aml_osdd: Fallback text extraction for https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba due to parsing note: All connection attempts failed
+2026-10-07 22:26:34 [WARNING] aml_osdd: Fallback text extraction for https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba due to parsing note: All connection attempts failed
+2026-10-07 22:26:34 [WARNING] aml_osdd: Fallback text extraction for https://mappingmilitants.org/profiles/lashkar-e-taiba due to parsing note: All connection attempts failed
+2026-10-07 22:26:34 [WARNING] aml_osdd: Fallback text extraction for https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx due to parsing note: All connection attempts failed
+2026-10-07 22:26:34 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-07 22:26:34 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-07 22:26:36 [ERROR] aml_osdd: Structured synthesis parsing failed: All connection attempts failed
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_async\connection.py", line 101, in handle_async_request
+    raise exc
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_async\connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_async\connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_backends\auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_backends\anyio.py", line 113, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\rsing\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: All connection attempts failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\pipeline.py", line 136, in run_osdd_pipeline
+    final_report: FinalOSDDResult = await synthesis_chain.ainvoke(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 3496, in ainvoke
+    input_ = await coro_with_context(part(), context, create_task=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 511, in ainvoke
+    llm_result = await self.agenerate_prompt(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1888, in agenerate_prompt
+    return await self.agenerate(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1846, in agenerate
+    raise exceptions[0]
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2179, in _agenerate_with_cache
+    result = await self._agenerate(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_ollama\chat_models.py", line 1388, in _agenerate
+    final_chunk = await self._achat_stream_with_aggregation(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_ollama\chat_models.py", line 1161, in _achat_stream_with_aggregation
+    async for chunk in self._aiterate_over_stream(messages, stop, **kwargs):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_ollama\chat_models.py", line 1306, in _aiterate_over_stream
+    async for stream_resp in self._acreate_chat_stream(messages, stop, **kwargs):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\langchain_ollama\chat_models.py", line 1102, in _acreate_chat_stream
+    async for part in await self._async_client.chat(**chat_params):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\ollama\_client.py", line 804, in inner
+    async with self._client.stream(*args, **kwargs) as r:
+  File "C:\Users\rsing\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 204, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_client.py", line 1583, in stream
+    response = await self.send(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "C:\Users\rsing\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: All connection attempts failed
+2026-10-07 22:27:13 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-07 22:27:13 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-07 22:27:13 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-07 22:27:13 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-07 22:27:13 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-07 22:27:13 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 22:27:13 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-07 22:27:13 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-07 22:27:13 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-07 22:27:33 [INFO] aml_osdd: Distilling [address_search] source: https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n
+2026-10-07 22:27:33 [INFO] aml_osdd: Distilling [address_search] source: https://www.youtube.com/watch?v=fPZHABWo-mA
+2026-10-07 22:27:34 [INFO] aml_osdd: Distilling [address_search] source: https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf
+2026-10-07 22:27:38 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm
+2026-10-07 22:27:44 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/
+2026-10-07 22:27:45 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba
+2026-10-07 22:27:48 [WARNING] aml_osdd: Fallback text extraction for https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana due to parsing note: Invalid json output: ```json
+{
+  "properties": {
+    "findings": {
+      "description": "Factual findings from this source relative to AML/KYC background",
+      "title": "Findings",
+      "type": "string"
+    },
+    "identified_addresses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Identified Addresses",
+      "type": "array"
+    },
+    "identified_related_entities": {
+      items: {
+        "type": "string"
+      },
+      "title": "Identified Related Entities",
+      "type": "array"
+    },
+    "negative_news_identified": {
+      "default": false,
+      "title": "Negative News Identified",
+      "type": "boolean"
+    },
+    "negative_news_details": {
+      anyOf: [
+        { "type": "string" },
+        { "type": "null" }
+      ],
+      "default": null,
+      "title": "Negative News Details"
+    },
+    "sanction_or_pep_flags": {
+      anyOf: [
+        { "type": "string" },
+        { "type": "null" }
+      ],
+      "default": null,
+      "title": "Sanction Or Pep Flags"
+    }
+  },
+  "required": [
+    "findings"
+  ]
+}
+```
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 22:27:48 [INFO] aml_osdd: Distilling [negative_news_search] source: https://mappingmilitants.org/profiles/lashkar-e-taiba
+2026-10-07 22:27:53 [WARNING] aml_osdd: Fallback text extraction for https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n due to parsing note: Failed to parse SectionDistillation from completion {"findings": "The article mentions Hafiz Mohammed Saeed, the alleged chief of Lashkar-e-Taiba (LeT), who has taken up the leadership of Difa-e-Pakistan, an umbrella council of extremist groups. He has publicly criticized the Pakistan Army and the U.S., and has taken a stance against the Pakistani government's moves to make up with the U.S. This could indicate a potential split within the military hierarchy or a bid for autonomy by Saeed. The article also highlights the Mumbai 2008 attacks, which were planned and executed by ISI and Pakistan Army, and Saeed's involvement in the LeT.", "identified_addresses": null, "identified_related_entities": ["Lashkar-e-Taiba", "Hafiz Mohammed Saeed", "Difa-e-Pakistan", "ISI", "Pakistan Army"], "negative_news_identified": true, "negative_news_details": "The article mentions that Saeed's actions and words could be a 'weather balloon' floated by the group opposing the U.S. line, and that his newfound belligerence could be a ruse to divert attention from the Haqqani Network and the Taliban, both critical to the Pakistani Army's Afghanistan strategy.", "sanction_or_pep_flags": null}. Got: 1 validation error for SectionDistillation
+identified_addresses
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 22:27:53 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba
+2026-10-07 22:27:58 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx
+2026-10-07 22:28:10 [WARNING] aml_osdd: Fallback text extraction for https://mappingmilitants.org/profiles/lashkar-e-taiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 22:28:13 [WARNING] aml_osdd: Fallback text extraction for https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 22:28:13 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-07 22:28:13 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-07 22:29:03 [INFO] aml_osdd: OSDD assessment complete for 'Lashkar-e-Taiba'. Risk Level: High, Score: 85

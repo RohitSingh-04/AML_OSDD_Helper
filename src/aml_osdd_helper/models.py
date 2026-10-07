@@ -1,89 +1,55 @@
-from pydantic import BaseModel, Field
 from typing import Literal, Optional
 
-class AnalyzeRequest(BaseModel):
-    entity_name: str
-    address: str = ""
-
-class BatchSummary(BaseModel):
-    summary: str
-    key_facts: list[str] = Field(default_factory=list)
+from pydantic import BaseModel, Field
 
 
-class EntitySearchResult(BaseModel):
-    entity: str
-    entity_type: Literal["Company", "Person", "Director", "UBO", "Organisation", "Group"]
-    industry: Optional[str] = None
-    jurisdiction: Optional[str] = None
-    addresses: list[str] = Field(default_factory=list)
-    description: str
-    related_entities: list[str] = Field(default_factory=list)
-    sources: list[str] = Field(default_factory=list)
+from typing import Any, Dict, List, Literal, Optional
 
-class AddressSearchResult(BaseModel):
-    addresses: list[str] = Field(default_factory=list)
-    associated_entities: list[str] = Field(default_factory=list)
-    description: Optional[str] = None
-    sources: list[str] = Field(default_factory=list)
 
 class RiskFactor(BaseModel):
-    category: str
-    description: str
-    severity: Literal["Low", "Medium", "High", "Critical"]
-    source_urls: list[str] = Field(default_factory=list)
+    category: str = Field(description="Category of the risk factor (e.g., Financial, Regulatory, PEP, Reputational)")
+    description: str = Field(description="Factual description of the identified risk")
+    severity: Literal["Low", "Medium", "High", "Critical"] = Field(description="Risk severity level")
 
 
 class SanctionsResult(BaseModel):
-    listed: bool = False
-    details: Optional[str] = None
-    sources: list[str] = Field(default_factory=list)
+    is_sanctioned: bool = Field(default=False, description="Whether the entity or associated parties are under sanctions")
+    details: Optional[str] = Field(default=None, description="Specific sanctions programs, lists, or regulatory bodies")
+    sources: List[str] = Field(default_factory=list, description="URLs or reference points confirming sanctions checks")
 
-class NegativeNewsResult(BaseModel):
-    negative_news: bool = False
-    negative_news_summary: Optional[str] = None
-    risk_factors: list[RiskFactor] = Field(default_factory=list)
-    sanctions: SanctionsResult
-    pep_association: bool = False
-    related_entities: list[str] = Field(default_factory=list)
-    sources: list[str] = Field(default_factory=list)
-
-class FinalAssessment(BaseModel):
-    risk_score: int
-    risk_level: Literal["Very Low", "Low", "Moderate", "High", "Critical"]
-    confidence: float
-    assessment_summary: str
-    limitations: list[str] = Field(default_factory=list)
 
 class FinalOSDDResult(BaseModel):
     entity: str
     entity_type: Literal["Company", "Person", "Director", "UBO", "Organisation", "Group"]
     industry: Optional[str] = None
     jurisdiction: Optional[str] = None
-    addresses: list[str] = Field(default_factory=list)
+    addresses: List[str] = Field(default_factory=list)
     description: str
-    sources: list[str] = Field(default_factory=list)
+    sources: List[str] = Field(default_factory=list)
     negative_news: bool = False
     negative_news_summary: Optional[str] = None
-    negative_news_sources: list[str] = Field(default_factory=list)
-    risk_factors: list[RiskFactor] = Field(default_factory=list)
+    negative_news_sources: List[str] = Field(default_factory=list)
+    risk_factors: List[RiskFactor] = Field(default_factory=list)
     sanctions: SanctionsResult
     pep_association: bool = False
-    related_entities: list[str] = Field(default_factory=list)
-    risk_score: int
+    related_entities: List[str] = Field(default_factory=list)
+    risk_score: int = Field(ge=0, le=100, description="Risk score from 0 (lowest) to 100 (highest)")
     risk_level: Literal["Very Low", "Low", "Moderate", "High", "Critical"]
-    confidence: float
+    confidence: float = Field(ge=0.0, le=1.0, description="Confidence score between 0.0 and 1.0")
     assessment_summary: str
-    limitations: list[str] = Field(default_factory=list)
+    limitations: List[str] = Field(default_factory=list)
 
 
-class BatchSummary(BaseModel):
-    summary: str
-    key_facts: list[str] = Field(default_factory=list)
+class AnalyzeRequest(BaseModel):
+    entity_name: str
+    address: str = ""
 
-class NegativeNewsBatchSummary(BaseModel):
-    relevant: bool
-    adverse_events: list[str] = Field(default_factory=list)
-    risk_categories: list[str] = Field(default_factory=list)
-    entities_mentioned: list[str] = Field(default_factory=list)
-    evidence_quality: Literal["Low", "Medium", "High"]
-    evidence_basis: str | None = None
+
+# Intermediate extraction model for chunked URL distillation
+class SectionDistillation(BaseModel):
+    findings: str = Field(description="Factual findings from this source relative to AML/KYC background")
+    identified_addresses: List[str] = Field(default_factory=list)
+    identified_related_entities: List[str] = Field(default_factory=list)
+    negative_news_identified: bool = Field(default=False)
+    negative_news_details: Optional[str] = Field(default=None)
+    sanction_or_pep_flags: Optional[str] = Field(default=None)

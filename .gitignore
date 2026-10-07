@@ -4,8 +4,12 @@ __pycache__/
 build/
 dist/
 wheels/
+benchmarks/
+
 *.egg-info
 
 # Virtual environments
 .venv
 .env
+
+scraping.json
