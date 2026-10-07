@@ -157,6 +157,12 @@ Check installed Ollama models with:
 ollama list
 ```
 
+Make sure the Ollama is served in same virtual environment with multiple parallel requests for optimal results.
+
+```bash
+ $env:OLLAMA_NUM_PARALLEL="8"
+ ollama serve
+```
 ## Running the Application
 
 Start the FastAPI development server using `uv`:

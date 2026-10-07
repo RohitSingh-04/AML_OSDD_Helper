@@ -421,3 +421,34 @@ For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/erro
 2026-10-07 22:28:13 [INFO] aml_osdd: Source distillation phase completed.
 2026-10-07 22:28:13 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
 2026-10-07 22:29:03 [INFO] aml_osdd: OSDD assessment complete for 'Lashkar-e-Taiba'. Risk Level: High, Score: 85
+2026-10-07 23:15:04 [INFO] aml_osdd: Incoming /api/analyze request: entity='AMEREAM LLC', address='1 American Dream Way East Rutherford, NJ 07073 United States'
+2026-10-07 23:15:04 [INFO] aml_osdd: Starting OSDD search collection for entity: 'AMEREAM LLC', address: '1 American Dream Way East Rutherford, NJ 07073 United States'
+2026-10-07 23:17:08 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 1 negative news sources. Total sources: 9
+2026-10-07 23:17:08 [INFO] aml_osdd: Launching 9 concurrent LLM source distillations (max 5 parallel)
+2026-10-07 23:17:08 [INFO] aml_osdd: Distilling [entity_search] source: https://www.fox5ny.com/news/massive-american-dream-mall-to-open-but-will-shoppers-come
+2026-10-07 23:17:08 [INFO] aml_osdd: Distilling [entity_search] source: https://finance.yahoo.com/news/american-dream-mall-review-inside-190656593.html
+2026-10-07 23:17:08 [INFO] aml_osdd: Distilling [entity_search] source: https://www.guttenbergnj.org/_Content/pdf/American-Dream-Jobs-Oct-2022.pdf
+2026-10-07 23:17:08 [INFO] aml_osdd: Distilling [address_search] source: https://visitorfun.com/destination/New-Jersey/15/American-Dream/profile/15869
+2026-10-07 23:17:08 [INFO] aml_osdd: Distilling [address_search] source: https://www.instagram.com/americandream/?hl=en
+2026-10-07 23:17:22 [INFO] aml_osdd: Distilling [address_search] source: https://www.malls.com/malls/american_dream/
+2026-10-07 23:17:24 [INFO] aml_osdd: Distilling [address_search] source: https://www.nj.com/live-entertainment/2025/04/american-dream-mall-hours-schedule-attractions-cost.html
+2026-10-07 23:17:31 [INFO] aml_osdd: Distilling [address_search] source: https://en.wikipedia.org/wiki/American_Dream_(shopping_mall)
+2026-10-07 23:17:33 [INFO] aml_osdd: Distilling [negative_news_search] source: http://www.supremecourt.gov/DocketPDF/18/18-9221/99212/20190513125959151_00000007.pdf
+2026-10-07 23:17:48 [WARNING] aml_osdd: Fallback text extraction for https://visitorfun.com/destination/New-Jersey/15/American-Dream/profile/15869 due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 23:17:49 [WARNING] aml_osdd: Fallback text extraction for https://www.nj.com/live-entertainment/2025/04/american-dream-mall-hours-schedule-attractions-cost.html due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 23:17:52 [WARNING] aml_osdd: Fallback text extraction for https://www.malls.com/malls/american_dream/ due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-07 23:17:52 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-07 23:17:52 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-07 23:18:18 [INFO] aml_osdd: OSDD assessment complete for 'AMEREAM LLC'. Risk Level: Moderate, Score: 50
