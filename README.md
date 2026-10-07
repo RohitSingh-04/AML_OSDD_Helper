@@ -2,18 +2,20 @@
 
 An AI-powered Open Source Due Diligence (OSDD) analyzer built with **FastAPI, SerpAPI, Ollama, and LangChain**.
 
-The application searches public sources, extracts information from HTML/PDF/YouTube sources, summarizes large search results into LLM-sized batches, and generates a structured OSDD assessment.
+The application searches public sources, extracts information from HTML/PDF/YouTube sources, concurrently distills findings into structured observations, and synthesizes a comprehensive final OSDD risk assessment. It now includes a web dashboard for easier interaction.
 
 ## Architecture
+
+The system utilizes a Map-Reduce LLM pattern to handle large volumes of context efficiently, governed by local concurrency limits (Semaphores) to prevent Ollama from overloading.
 
 ```text
                          ┌─────────────────────┐
                          │       FastAPI       │
-                         │  POST /api/analyze  │
+                         │ GET / (Dashboard)   │
+                         │ POST /api/analyze   │
                          └──────────┬──────────┘
                                     │
-                                    ▼
-                              ┌───────────┐
+                              ┌─────┴─────┐
                               │  SerpAPI  │
                               └─────┬─────┘
                                     │
@@ -23,31 +25,22 @@ The application searches public sources, extracts information from HTML/PDF/YouT
                  │                  │                  │
                  └──────────────────┼──────────────────┘
                                     ▼
-                           Source Extraction
+                      Source Extraction (Trafilatura,
+                      PyMuPDF, YouTube Transcripts)
                                     │
-                 ┌─────────────────┼─────────────────┐
-                 ▼                 ▼                 ▼
-               HTML               PDF             YouTube
-            Trafilatura         PyMuPDF         Transcript
-                 │                 │                 │
-                 └─────────────────┼─────────────────┘
+                 ┌──────────────────┼──────────────────┐
+                 ▼                  ▼                  ▼
+              Source 1           Source 2           Source N
+            Distillation       Distillation       Distillation
+            (Concurrent)       (Concurrent)       (Concurrent)
+                 │                  │                  │
+                 └──────────────────┼──────────────────┘
                                     ▼
-                            Context Batching
+                             Evidence Dossier
                                     │
                                     ▼
-                         Source Summarization LLM
-                                    │
-                 ┌─────────────────┼─────────────────┐
-                 ▼                 ▼                 ▼
-           Entity Summary    Address Summary    News Summary
-                 │                 │                 │
-                 ▼                 ▼                 ▼
-               LLM 1             LLM 2             LLM 3
-                 │                 │                 │
-                 └─────────────────┼─────────────────┘
-                                    ▼
-                                  LLM 4
-                          Final Risk Assessment
+                           Final LLM Synthesis
+                          (LangChain + Pydantic)
                                     │
                                     ▼
                              FinalOSDDResult
@@ -56,20 +49,24 @@ The application searches public sources, extracts information from HTML/PDF/YouT
 ### Project Structure
 
 ```text
-aml-osdd-analyzer/
+aml_osdd_helper/
 │
 ├── src/
 │   └── aml_osdd_helper/
 │       ├── __init__.py
 │       ├── main.py
-│       ├── models.py
-│       ├── prompts.py
-│       ├── scraper.py
-│       └── summarizer.py
+│       ├── pipeline.py       # Orchestrates Map-Reduce & concurrency
+│       ├── models.py         # Pydantic schemas for structured extraction
+│       ├── prompts.py        # Distillation and synthesis prompts
+│       ├── scraper.py        # SerpAPI and text extraction
+│       ├── llm.py            # LangChain integrations & Semaphore limits
+│       ├── logger.py         # Application logging
+│       ├── settings.py       # Configuration
+│       ├── static/           # CSS/JS for the dashboard
+│       └── templates/        # Jinja2 HTML templates for the UI
 │
 ├── logs/
 │   └── aml_osdd_logs.log
-│
 ├── requirements.txt
 ├── pyproject.toml
 ├── uv.lock
@@ -81,26 +78,20 @@ aml-osdd-analyzer/
 
 ## Features
 
-- Google search through SerpAPI
-- Entity, address, and negative-news search buckets
-- HTML extraction using Trafilatura
-- PDF extraction using PyMuPDF
-- YouTube transcript extraction
-- Context-aware source batching
-- LLM-based source summarization
-- Structured LLM outputs using Pydantic
-- Entity and address analysis
-- Adverse-media analysis
-- Final OSDD risk assessment
-- Console and file logging
-- Local LLM inference through Ollama
+- **Web Dashboard:** Interactive frontend built with Jinja2 templates and FastAPI.
+- **Google Search Integration:** Powered by SerpAPI (Entity, Address, and Negative News buckets).
+- **Multi-Format Extraction:** Handles standard HTML (Trafilatura), PDFs (PyMuPDF), and YouTube transcripts.
+- **Concurrent Source Distillation (Map-Reduce):** Processes multiple extracted URLs in parallel using an asyncio semaphore to prevent local LLM timeout/OOM.
+- **Structured AI Outputs:** Leverages `langchain_core` and `PydanticOutputParser` to ensure consistent JSON outputs (`FinalOSDDResult`, `RiskFactor`, `SanctionsResult`).
+- **Deep Risk Analysis:** Automatically identifies PEP associations, sanctions flags, adverse media, related entities, and generates a quantitative risk score (0-100).
+- **Local LLM Inference:** Built for privacy using local models via Ollama.
 
 ## Requirements
 
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/)
 - Ollama
-- A compatible Ollama model
+- A compatible Ollama model (e.g., `dolphin3:latest`)
 - SerpAPI account/API key
 
 ## Installation
@@ -149,6 +140,7 @@ Create a `.env` file in the project root:
 ```env
 SERPAPI_API_KEY=your_serpapi_api_key
 OLLAMA_MODEL=dolphin3:latest
+OLLAMA_CONCURRENCY_LIMIT=3
 ```
 
 ### Required Variables
@@ -156,15 +148,8 @@ OLLAMA_MODEL=dolphin3:latest
 | Variable | Description |
 |---|---|
 | `SERPAPI_API_KEY` | API key used for Google and YouTube searches |
-| `OLLAMA_MODEL` | Ollama model used by the application |
-
-`OLLAMA_MODEL` can be changed to any compatible model available locally.
-
-For example:
-
-```env
-OLLAMA_MODEL=dolphin3:latest
-```
+| `OLLAMA_MODEL` | Ollama model used by the application (default: `dolphin3:latest`) |
+| `OLLAMA_CONCURRENCY_LIMIT`| Controls how many parallel LLM distillation tasks run at once |
 
 Check installed Ollama models with:
 
@@ -186,23 +171,17 @@ Alternatively, you can run it with Uvicorn directly:
 uv run uvicorn src.aml_osdd_helper.main:app --reload
 ```
 
-The API will be available at:
-
-```text
-http://127.0.0.1:8000
-```
-
-Swagger API documentation:
-
-```text
-http://127.0.0.1:8000/docs
-```
+- **Dashboard:** `http://127.0.0.1:8000/`
+- **API Documentation:** `http://127.0.0.1:8000/docs`
 
 ## API Usage
 
+### `GET /`
+Serves the web dashboard (HTML UI) where you can input entity details and view the generated report visually.
+
 ### `POST /api/analyze`
 
-Request:
+**Request (`AnalyzeRequest`):**
 
 ```json
 {
@@ -212,16 +191,20 @@ Request:
 ```
 
 The API performs:
+1. Search collection via SerpAPI.
+2. Concurrent context extraction for all identified URLs.
+3. Parallel distillation of each source (`SectionDistillation`) to isolate AML findings.
+4. Aggregation of a master evidence dossier.
+5. Final structured LLM synthesis (`FinalOSDDResult`).
 
-1. Entity search
-2. Address search
-3. Negative-news search
-4. Source extraction
-5. Context-aware summarization
-6. Entity analysis
-7. Address analysis
-8. Negative-news analysis
-9. Final OSDD assessment
+**Response Schema (`FinalOSDDResult`):**
+Returns a strictly typed JSON structure containing:
+- Basic entity profiling (Type, Industry, Jurisdiction).
+- Discovered Addresses & Related Entities.
+- `RiskFactor` array (Category, Description, Severity).
+- `SanctionsResult` (Flags, Details, Sources).
+- PEP Association and Negative News tracking.
+- Overall `risk_score` (0-100) and `risk_level` (Very Low to Critical).
 
 Example using `curl`:
 
@@ -239,30 +222,12 @@ Application logs are displayed in the console and written to:
 logs/aml_osdd_logs.log
 ```
 
-The logging system records:
-
-- Analysis start/completion
-- Search and summarization stages
-- LLM execution stages
-- Errors and full tracebacks
-- Debug-level model results
-
-Example:
-
-```text
-2026-10-02 22:40:12 - aml_osdd_helper - INFO -
-[OSDD ANALYSIS START] Entity: Crown Resorts | Address:
-
-2026-10-02 22:40:15 - aml_osdd_helper - INFO -
-Summarizing entity sources...
-
-2026-10-02 22:40:42 - aml_osdd_helper - INFO -
-[LLM 1]: Executing entity analysis
-
-2026-10-02 22:41:20 - aml_osdd_helper - INFO -
-[OSDD ANALYSIS COMPLETE] Successfully analyzed: Crown Resorts
-```
+The logging system tracks the entire map-reduce pipeline:
+- Search initiation and source counts.
+- Concurrent distillation progress (and extraction fallbacks).
+- Pydantic parser retries/errors.
+- Final synthesis completion and assigned risk scores.
 
 ## Disclaimer
 
-This project is intended as an **OSINT/OSDD research and assistance tool**. Results generated from public sources and LLMs should be reviewed and verified by an appropriate human before being used for compliance, legal, or business decisions.
+This project is intended as an **OSINT/OSDD research and assistance tool**. Results generated from public sources and LLMs should be reviewed and verified by an appropriate human before being used for compliance, legal, or business decisions. The automated scoring is suggestive based on publicly scraped context and does not replace official KYC/AML procedures.
