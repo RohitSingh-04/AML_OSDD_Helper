@@ -119,17 +119,10 @@ def extract_datas(urls: list[str]) -> dict:
 
 def perform_osdd_searches(entity, address = ""):
 
-    with open("scraping.json") as fh:
-        result = json.load(fh)
-    return result 
-
     STRING_SEARCH_TEXT = 'AND (arrest OR corruption OR sentencing OR money laundering OR AML OR launder OR embezzle OR evad OR evad OR Crimes OR corrupt OR bribe OR theft OR extort OR drug OR traffic OR trafficking OR felony OR sanctions OR counterfeit OR terror)'
     if address:
         results = {"entity_search": extract_datas(search_urls(entity)), "address_search": extract_datas(list(set(search_urls(entity + address, 10)) | set(search_urls(address, 10)))), "negative_news_search": extract_datas(search_urls(f'''"{entity}" {STRING_SEARCH_TEXT}'''))}
     else:
         results = {"entity_search": extract_datas(search_urls(entity)), "address_search": extract_datas(list(set(search_urls("address of " + entity, 10)) | set(search_urls(entity + "is located at?", 10)))), "negative_news_search": extract_datas(search_urls(f'''"{entity}" {STRING_SEARCH_TEXT}'''))}
-
-    with open("scraping.json", 'w') as fh:
-        json.dump(results, fh)
 
     return results
