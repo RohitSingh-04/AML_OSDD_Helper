@@ -452,3 +452,537 @@ For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/erro
 2026-10-07 23:17:52 [INFO] aml_osdd: Source distillation phase completed.
 2026-10-07 23:17:52 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
 2026-10-07 23:18:18 [INFO] aml_osdd: OSDD assessment complete for 'AMEREAM LLC'. Risk Level: Moderate, Score: 50
+2026-10-08 08:11:57 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-08 08:11:57 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-08 08:11:57 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-08 08:11:57 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-08 08:11:57 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-08 08:11:57 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-08 08:11:57 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-08 08:11:57 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-08 08:11:57 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-08 09:25:55 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-08 09:25:55 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-08 09:25:55 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-08 09:25:55 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-08 09:25:55 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-08 09:25:55 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-08 09:25:55 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-08 09:25:55 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-08 09:25:55 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-08 09:26:12 [WARNING] aml_osdd: Fallback text extraction for https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana due to parsing note: Failed to parse SectionDistillation from completion {"findings": null, "identified_addresses": [], "identified_related_entities": [], "negative_news_identified": false, "negative_news_details": null, "sanction_or_pep_flags": null, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:26:12 [INFO] aml_osdd: Distilling [address_search] source: https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n
+2026-10-08 09:26:15 [WARNING] aml_osdd: Fallback text extraction for https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi due to parsing note: Failed to parse SectionDistillation from completion {"findings": {"identified_address": "Lashkar-e-Taiba", "identified_related_entity": "ISI"}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value={'identified_address': 'L..._related_entity': 'ISI'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:26:15 [INFO] aml_osdd: Distilling [address_search] source: https://www.youtube.com/watch?v=fPZHABWo-mA
+2026-10-08 09:26:19 [WARNING] aml_osdd: Fallback text extraction for https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi due to parsing note: Failed to parse SectionDistillation from completion {"findings": {"link_to_isi": "Lashkar-e-Taiba is linked to the ISI."}, "identified_addresses": [], "identified_related_entities": ["The New York Times", "PRI", "WNYC"], "negative_news_identified": false, "negative_news_details": null, "sanction_or_pep_flags": null}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value={'link_to_isi': 'Lashkar-... is linked to the ISI.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:26:19 [INFO] aml_osdd: Distilling [address_search] source: https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf
+2026-10-08 09:26:22 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm
+2026-10-08 09:26:31 [WARNING] aml_osdd: Fallback text extraction for https://www.jstor.org/stable/resrep05591 due to parsing note: Failed to parse SectionDistillation from completion {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": [], "identified_related_entities": [], "negative_news_identified": false, "negative_news_details": null, "sanction_or_pep_flags": null, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value={'description': 'Factual ...ings', 'type': 'string'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:26:31 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/
+2026-10-08 09:26:54 [WARNING] aml_osdd: Fallback text extraction for https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/ due to parsing note: Failed to parse SectionDistillation from completion {"findings": null, "identified_addresses": [], "identified_related_entities": [], "negative_news_identified": false, "negative_news_details": null, "sanction_or_pep_flags": null, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:26:54 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba
+2026-10-08 09:26:56 [WARNING] aml_osdd: Fallback text extraction for https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf due to parsing note: Failed to parse SectionDistillation from completion {"findings": ["Lashkar-e-Taiba is labeled as potentially the next al-Qaida.", "The group has both state protection and global ambitions.", "It has a triple-faceted structure: domestic, guerrilla, and international.", "The group has a borderless jihad and is divided into violent and non-violent components.", "The Mumbai attack in 2008 is a turning point.", "The group leverages contacts with Pakistan's military and intelligence community for international operations.", "Negative news identified: [null]"], "identified_addresses": ["Eth Zurich"], "identified_related_entities": ["Pakistan"], "negative_news_identified": ["null"], "negative_news_details": ["null"], "sanction_or_pep_flags": ["null"]}. Got: 4 validation errors for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=['Lashkar-e-Taiba is labe...ews identified: [null]'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+negative_news_identified
+  Input should be a valid boolean [type=bool_type, input_value=['null'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/bool_type
+negative_news_details
+  Input should be a valid string [type=string_type, input_value=['null'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+sanction_or_pep_flags
+  Input should be a valid string [type=string_type, input_value=['null'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:26:56 [INFO] aml_osdd: Distilling [negative_news_search] source: https://mappingmilitants.org/profiles/lashkar-e-taiba
+2026-10-08 09:27:17 [WARNING] aml_osdd: Fallback text extraction for https://www.youtube.com/watch?v=fPZHABWo-mA due to parsing note: Failed to parse SectionDistillation from completion {"findings": [{"title": "Identified Addresses", "description": "Identified Addresses", "type": "string"}, {"title": "Identified Related Entities", "description": "Identified Related Entities", "type": "string"}, {"title": "Negative News Identified", "description": "Negative News Identified", "type": "boolean"}, {"title": "Negative News Details", "description": "Negative News Details", "type": "null"}, {"title": "Sanction Or Pep_flags", "description": "Sanction Or Pep_flags", "type": "null"}]}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=[{'title': 'Identified Ad...flags', 'type': 'null'}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:27:17 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba
+2026-10-08 09:27:20 [WARNING] aml_osdd: Fallback text extraction for https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba due to parsing note: Failed to parse SectionDistillation from completion {"findings": [{"title": "Lashkar-e-Taiba (LeT) banned in Pakistan", "description": "The source highlights the ban of Lashkar-e-Taiba (LeT) in Pakistan, a key AML point.", "type": "string"}, {"title": "LeT's historical significance", "description": "LeT is mentioned as a banned group in Pakistan, with historical significance in terrorism.", "type": "string"}, {"title": "LeT's funding and leadership", "description": "LeT's funding from the Indian government's intelligence agency, the Inter-Services Intelligence (ISI), and its leadership include details on its ideology and operations.", "type": "string"}, {"title": "LeT's international links", "description": "The source raises concerns about LeT's international links, referencing the 2009 American citizen David C. Headley's case.", "type": "string"}, {"title": "LeT's AML controls", "description": "The source does not mention specific AML controls or reporting mechanisms, which is a concern for detecting potential AML violations.", "type": "string"}], "identified_addresses": [], "identified_related_entities": [], "negative_news_identified": true, "negative_news_details": [{"type": "string", "title": "Lashkar-e-Taiba (LeT) banned in Pakistan", "description": "The source highlights the ban of Lashkar-e-Taiba (LeT) in Pakistan, a key AML point.", "default": false}, {"type": "string", "title": "LeT's historical significance", "description": "LeT is mentioned as a banned group in Pakistan, with historical significance in terrorism.", "default": false}, {"type": "string", "title": "LeT's funding and leadership", "description": "LeT's funding from the Indian government's intelligence agency, the Inter-Services Intelligence (ISI), and its leadership include details on its ideology and operations.", "default": false}, {"type": "string", "title": "LeT's international links", "description": "The source raises concerns about LeT's international links, referencing the 2009 American citizen David C. Headley's case.", "default": false}], "required": ["findings"]}. Got: 2 validation errors for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=[{'title': 'Lashkar-e-Tai...ns.', 'type': 'string'}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+negative_news_details
+  Input should be a valid string [type=string_type, input_value=[{'type': 'string', 'titl...se.", 'default': False}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:27:20 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx
+2026-10-08 09:27:29 [WARNING] aml_osdd: Fallback text extraction for https://mappingmilitants.org/profiles/lashkar-e-taiba due to parsing note: Failed to parse SectionDistillation from completion {"findings": [{"title": "Lashkar-e-Taiba is a Sunni group following the Ahle-Hadith interpretation of Islam.", "description": "The group follows the Ahle-Hadith interpretation of Islam, similar to Salafism and Wahhabism, with roots in both the Middle East and Indian Subcontinent.", "type": "string"}, {"title": "LeT does not believe in attacking Muslims in its struggle against aggression and oppression.", "description": "The group aims to change regional and geopolitical dynamics in Afghanistan, Pakistan, and India by attacking non-Muslim targets.", "type": "string"}, {"title": "LeT uses fidayeen tactics (targeted killings of individuals to redeem themselves) as a recruitment tool.", "description": "These tactics are distinct from suicide bombings and are used to recruit individuals for illegal activities.", "type": "string"}, {"title": "LeT has faced sanctions and bans from the U.S. Department of State.", "description": "The group has faced sanctions and bans, which could indicate involvement in illegal activities.", "type": "string"}], "identified_addresses": [], "identified_related_entities": [], "negative_news_identified": [], "negative_news_details": [], "sanction_or_pep_flags": []}. Got: 4 validation errors for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=[{'title': 'Lashkar-e-Tai...es.', 'type': 'string'}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+negative_news_identified
+  Input should be a valid boolean [type=bool_type, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/bool_type
+negative_news_details
+  Input should be a valid string [type=string_type, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+sanction_or_pep_flags
+  Input should be a valid string [type=string_type, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:27:40 [WARNING] aml_osdd: Fallback text extraction for https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba due to parsing note: Failed to parse SectionDistillation from completion {"findings": ["Lashkar-e-Tayyiba", "Lashkar-e-Taytaba", "Lashkar-e-Toiba", "Lashkar-i-Tayyaba", "Lashkar-i-Toiba", "Lashkar-Tayyiba", "LeT"]}. Got: 1 validation error for SectionDistillation
+findings
+  Input should be a valid string [type=string_type, input_value=['Lashkar-e-Tayyiba', 'La...Lashkar-Tayyiba', 'LeT'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:28:21 [WARNING] aml_osdd: Fallback text extraction for https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm due to parsing note: Invalid json output: ```json
+{
+  "findings": [
+    {
+      "title": "The Council on American-Islamic Relations (CAIR) has been named as an unindicted co-conspirator in the 2007 Holy Land Foundation terrorism financing trial.",
+      "description": "The Council on American-Islamic Relations (CAIR) has been named as an unindicted co-conspirator in the 2007 Holy Land Foundation terrorism financing trial.",
+      "type": "statement"
+    },
+    {
+      "title": "Multiple State legislatures have passed resolutions urging avoidance of engagement with CAIR due to its alleged affiliations with terrorist groups.",
+      "description": "Multiple State legislatures have passed resolutions urging avoidance of engagement with CAIR due to its alleged affiliations with terrorist groups.",
+      "type": "statement"
+    },
+    {
+      "title": "The Federal Bureau of Investigation has suspended all formal contacts with CAIR due to evidence demonstrating a relationship between CAIR and Hamas.",
+      "description": "The Federal Bureau of Investigation has suspended all formal contacts with CAIR due to evidence demonstrating a relationship between CAIR and Hamas.",
+      "type": "statement"
+    },
+    {
+      "title": "Since October 7, 2023, Hamas terrorists and their allies have launched over 11,500 rockets into southern and central Israel, the sole goal of which was to kill Israeli civilians.",
+      "description": "Since October 7, 2023, Hamas terrorists and their allies have launched over 11,500 rockets into southern and central Israel, the sole goal of which was to kill Israeli civilians.",
+      "type": "statement"
+    },
+    {
+      "title": "Hamas and Iranian leadership have called for the extermination of Israelis, Americans, Jews, and Christians around the world and the establishment of a global Islamic caliphate.",
+      "description": "Hamas and Iranian leadership have called for the extermination of Israelis, Americans, Jews, and Christians around the world and the establishment of a global Islamic caliphate.",
+      "type": "statement"
+    },
+    {
+      "title": "The stated goal of Hamas and its allies is the complete and total destruction of the State of Israel and the Jewish people.",
+      "description": "The stated goal of Hamas and its allies is the complete and total destruction of the State of Israel and the Jewish people.",
+      "type": "statement"
+    },
+    {
+      "title": "In the Federal criminal prosecutions of persons involved with the Holy Land Foundation for Relief and Development, the largest successful prosecution of terrorism financing in our country's history, CAIR was identified as an associate of the Muslim Brotherhood and was named an unindicted co-conspirator in the trial.",
+      "description": "In the Federal criminal prosecutions of persons involved with the Holy Land Foundation for Relief and Development, the largest successful prosecution of terrorism financing in our country's history, CAIR was identified as an associate of the Muslim Brotherhood and was named an unindicted co-conspirator in the trial.",
+      "type": "statement"
+    },
+    {
+      "title": "CAIR, soon after opening its first office in Washington, DC, received a grant from the Holy Land Foundation for Relief and Development, a charitable organization that was closed and was designated a Specially Designated Global terrorist by the United States Department of the Treasury for funding jihadist terrorist organizations.",
+      "description": "CAIR, soon after opening its first office in Washington, DC, received a grant from the Holy Land Foundation for Relief and Development, a charitable organization that was closed and was designated a Specially Designated Global terrorist by the United States Department of the Treasury for funding jihadist terrorist organizations.",
+      "type": "statement"
+    },
+    {
+      "title": "In 2009, Ghassan Elashi, who was a member of the founding board of directors of the Texas branch of CAIR and a leader of the Holy Land Foundation for Relief and Development, was sentenced to a total of 65 years in prison after being convicted of-- (A) 10 counts of conspiracy to provide, and the provision of, material support to a designated foreign terrorist organization; (B) 11 counts of conspiracy to provide, and the provision of, funds, goods, and services to a Specially Designated Terrorist as determined by the United States Secretary of the Treasury; (C) 10 counts of conspiracy to commit, and the commission of, money laundering; (D) 1 count of conspiracy to impede and impair the Internal Revenue Service; and (E) 2 counts of filing a false tax return.",
+      "description": "In 2009, Ghassan Elashi, who was a member of the founding board of directors of the Texas branch of CAIR and a leader of the Holy Land Foundation for Relief and Development, was sentenced to a total of 65 years in prison after being convicted of-- (A) 10 counts of conspiracy to provide, and the provision of, material support to a designated foreign terrorist organization; (B) 11 counts of conspiracy to provide, and the provision of, funds, goods, and services to a Specially Designated Terrorist as determined by the United States Secretary of the Treasury; (C) 10 counts of conspiracy to commit, and the commission of, money laundering; (D) 1 count of conspiracy to impede and impair the Internal Revenue Service; and (E) 2 counts of filing a false tax return.",
+      "type": "statement"
+    },
+    {
+      "title": "In October, 2000, at a large CAIR rally in Washington, DC, featured speaker Abdurahman Alamoudi, later a convicted terrorist and Al Qaeda financier, publicly expressed support for both Hamas and Hezbollah as the crowd cheered him on.",
+      "description": "In October, 2000, at a large CAIR rally in Washington, DC, featured speaker Abdurahman Alamoudi, later a convicted terrorist and Al Qaeda financier, publicly expressed support for both Hamas and Hezbollah as the crowd cheered him on.",
+      "type": "statement"
+    },
+    {
+      "title": " randall Todd Royer, also known as Ismail Royer, who served as a communications specialist and civil rights coordinator for CAIR and trained with and set up an internet based newsletter for Lashkar-e-Taiba, an al Qaeda-tied Kashmir organization that is listed on the United States Department of State's international terror list, was also indicted on charges of conspiring to help al Qaeda and the Taliban battle American troops fighting in Afghanistan and was sentenced to 20 years in prison on April 9, 2004.",
+      "description": "randall Todd Royer, also known as Ismail Royer, who served as a communications specialist and civil rights coordinator for CAIR and trained with and set up an internet based newsletter for Lashkar-e-Taiba, an al Qaeda-tied Kashmir organization that is listed on the United States Department of State's international terror list, was also indicted on charges of conspiring to help al Qaeda and the Taliban battle American troops fighting in Afghanistan and was sentenced to 20 years in prison on April 9, 2004.",
+      "type": "statement"
+    },
+    {
+      "title": "In September 2003, CAIR's former community affairs director, Bassem Khafagi, pleaded guilty to 3 Federal counts of bank and visa fraud, and agreed to be deported to Egypt after he had funneled money to activities supporting terrorism and had published material advocating suicide attacks against the [insert location]."
+      "description": "In September 2003, CAIR's former community affairs director, Bassem Khafagi, pleaded guilty to 3 Federal counts of bank and visa fraud, and agreed to be deported to Egypt after he had funneled money to activities supporting terrorism and had published material advocating suicide attacks against the [insert location]."
+      "type": "statement"
+    },
+    {
+      "title": "Hamas and Iranian leadership have called for the extermination of Israelis, Americans, Jews, and Christians around the world and the establishment of a global Islamic caliphate.",
+      "description": "Hamas and Iranian leadership have called for the extermination of Israelis, Americans, Jews, and Christians around the world and the establishment of a global Islamic caliphate.",
+      "type": "statement"
+    },
+    {
+      "title": "The Council on American-Islamic Relations (CAIR) has been named as an unindicted co-conspirator in the 2007 Holy Land Foundation terrorism financing trial.",
+      "description": "The Council on American-Islamic Relations (CAIR) has been named as an unindicted co-conspirator in the 2007 Holy Land Foundation terrorism financing trial.",
+      "type": "statement"
+    }
+  ]
+}
+```
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:36:57 [INFO] aml_osdd: Incoming /api/analyze request: entity='Lashkar-e-Taiba', address=''
+2026-10-08 09:36:57 [INFO] aml_osdd: Starting OSDD search collection for entity: 'Lashkar-e-Taiba', address: ''
+2026-10-08 09:36:57 [INFO] aml_osdd: Search finished. Found 3 entity sources, 5 address sources, 6 negative news sources. Total sources: 14
+2026-10-08 09:36:57 [INFO] aml_osdd: Launching 14 concurrent LLM source distillations (max 5 parallel)
+2026-10-08 09:36:57 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jstor.org/stable/resrep05591
+2026-10-08 09:36:57 [INFO] aml_osdd: Distilling [entity_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-08 09:36:57 [INFO] aml_osdd: Distilling [entity_search] source: https://www.youtube.com/watch?v=qtT3wYjI_M0
+2026-10-08 09:36:57 [INFO] aml_osdd: Distilling [address_search] source: https://www.wnycstudios.org/podcasts/takeaway/segments/7676-lashkar-e-taiba-linked-isi
+2026-10-08 09:36:57 [INFO] aml_osdd: Distilling [address_search] source: https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana
+2026-10-08 09:37:13 [INFO] aml_osdd: Distilling [address_search] source: https://www.sbs.com.au/news/article/is-lashkar-e-taiba-turning-against-pakistan/8tf0l6x5n
+2026-10-08 09:37:15 [INFO] aml_osdd: Distilling [address_search] source: https://www.youtube.com/watch?v=fPZHABWo-mA
+2026-10-08 09:37:17 [INFO] aml_osdd: Distilling [address_search] source: https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf
+2026-10-08 09:37:22 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.congress.gov/119/bills/hr4097/BILLS-119hr4097ih.htm
+2026-10-08 09:37:30 [WARNING] aml_osdd: Fallback text extraction for https://www.lawfaremedia.org/article/post-conviction-motions-denied-lashkar-e-taiba-material-support-case-united-states-v-rana due to parsing note: Invalid json output: ```json
+{
+  "properties": {
+    "findings": {
+      "description": "Factual findings from this source relative to AML/KYC background",
+      "title": "Findings",
+      "type": "string"
+    },
+    "identified_addresses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Identified Addresses",
+      "type": "array"
+    },
+    "identified_related_entities": {
+      items: {
+        "type": "string"
+      },
+      "title": "Identified Related Entities",
+      "type": "array"
+    },
+    "negative_news_identified": {
+      "default": false,
+      "title": "Negative News Identified",
+      "type": "boolean"
+    },
+    "negative_news_details": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Negative News Details"
+    },
+    "sanction_or_pep_flags": {
+      anyOf: [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sanction Or Pep Flags"
+    }
+  },
+  "required": [
+    "findings"
+  ]
+}
+```
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:37:30 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.ebsco.com/research-starters/political-science/lashkar-e-taiba-let/
+2026-10-08 09:37:30 [WARNING] aml_osdd: Fallback text extraction for https://www.jstor.org/stable/resrep05591 due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:37:30 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.cfr.org/backgrounders/lashkar-e-taiba-army-pure-aka-lashkar-e-tayyiba-lashkar-e-toiba-lashkar-i-taiba
+2026-10-08 09:37:34 [INFO] aml_osdd: Distilling [negative_news_search] source: https://mappingmilitants.org/profiles/lashkar-e-taiba
+2026-10-08 09:37:44 [WARNING] aml_osdd: Fallback text extraction for https://css.ethz.ch/content/dam/ethz/special-interest/gess/cis/center-for-securities-studies/pdfs/CSS-Analysis-132-EN.pdf due to parsing note: Invalid json output: {
+  "properties": {
+    "findings": {
+      "description": "Factual findings from this source relative to AML/KYC background",
+      "title": "Findings",
+      "type": "string"
+    },
+    "identified_addresses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Identified Addresses",
+      "type": "array"
+    },
+    "identified_related_entities": {
+      items: {
+        "type": "string"
+      },
+      "title": "Identified Related Entities",
+      "type": "array"
+    },
+    "negative_news_identified": {
+      "default": false,
+      "title": "Negative News Identified",
+      "type": "boolean"
+    },
+    "negative_news_details": {
+      anyOf: [
+        { "type": "string" },
+        { "type": "null" }
+      ],
+      default: null,
+      "title": "Negative News Details"
+    },
+    "sanction_or_pep_flags": {
+      anyOf: [
+        { "type": "string" },
+        { "type": "null" }
+      ],
+      default: null,
+      "title": "Sanction Or Pep Flags"
+    }
+  },
+  "required": [
+    "findings"
+  ]
+}
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:37:44 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations/lashkar-e-tayyiba
+2026-10-08 09:37:48 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.publicsafety.gc.ca/cnt/ntnl-scrt/cntr-trrrsm/lstd-ntts/crrnt-lstd-ntts-en.aspx
+2026-10-08 09:37:56 [WARNING] aml_osdd: Fallback text extraction for https://mappingmilitants.org/profiles/lashkar-e-taiba due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 09:38:03 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-08 09:38:03 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-08 09:38:58 [INFO] aml_osdd: OSDD assessment complete for 'Lashkar-e-Taiba'. Risk Level: High, Score: 85
+2026-10-08 12:28:50 [INFO] aml_osdd: Incoming /api/analyze request: entity='SUEX OTC, S.R.O.', address='Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:28:50 [INFO] aml_osdd: Starting OSDD search collection for entity: 'SUEX OTC, S.R.O.', address: 'Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:30:34 [ERROR] aml_osdd: Search collection failed in scraper.py: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=SUEX+OTC%2C+S.R.O.Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 69, in raise_for_status
+    r.raise_for_status()
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=SUEX+OTC%2C+S.R.O.Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 57, in request
+    raise_for_status(r)
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 71, in raise_for_status
+    raise HTTPError(e)
+serpapi.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=SUEX+OTC%2C+S.R.O.Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\pipeline.py", line 80, in run_osdd_pipeline
+    search_data: Dict[str, Dict[str, str]] = await loop.run_in_executor(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\scraper.py", line 124, in perform_osdd_searches
+    results = {"entity_search": extract_datas(search_urls(entity)), "address_search": extract_datas(list(set(search_urls(entity + address, 10)) | set(search_urls(address, 10)))), "negative_news_search": extract_datas(search_urls(f'''"{entity}" {STRING_SEARCH_TEXT}'''))}
+                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\scraper.py", line 16, in search_urls
+    results = client.search({
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\core.py", line 54, in search
+    r = self.request("GET", "/search", params=params, **request_kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 59, in request
+    raise HTTPError(e)
+serpapi.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=SUEX+OTC%2C+S.R.O.Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+2026-10-08 12:32:32 [INFO] aml_osdd: Incoming /api/analyze request: entity='SUEX OTC, S.R.O', address='Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:32:32 [INFO] aml_osdd: Starting OSDD search collection for entity: 'SUEX OTC, S.R.O', address: 'Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:34:26 [ERROR] aml_osdd: Search collection failed in scraper.py: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 69, in raise_for_status
+    r.raise_for_status()
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 57, in request
+    raise_for_status(r)
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 71, in raise_for_status
+    raise HTTPError(e)
+serpapi.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\pipeline.py", line 80, in run_osdd_pipeline
+    search_data: Dict[str, Dict[str, str]] = await loop.run_in_executor(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\scraper.py", line 124, in perform_osdd_searches
+    results = {"entity_search": extract_datas(search_urls(entity)), "address_search": extract_datas(list(set(search_urls(entity + address, 10)) | set(search_urls(address, 10)))), "negative_news_search": extract_datas(search_urls(f'''"{entity}" {STRING_SEARCH_TEXT}'''))}
+                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\src\aml_osdd_helper\scraper.py", line 16, in search_urls
+    results = client.search({
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\core.py", line 54, in search
+    r = self.request("GET", "/search", params=params, **request_kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsing\OneDrive\Desktop\OSDD_King\aml_osdd_helper\.venv\Lib\site-packages\serpapi\http.py", line 59, in request
+    raise HTTPError(e)
+serpapi.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://serpapi.com/search?engine=google&q=Skorepka+1058%2F8+Stare+Mesto%2C+Prague+110+00%2C+Czech+Republic&num=10&api_key=5b3180f466b15dc929d2dfb9f1d3ef8542935c304ce969f098c2b5d84f580e14
+2026-10-08 12:42:55 [INFO] aml_osdd: Incoming /api/analyze request: entity='SUEX OTC, S.R.O', address='Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:42:55 [INFO] aml_osdd: Starting OSDD search collection for entity: 'SUEX OTC, S.R.O', address: 'Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:47:05 [INFO] aml_osdd: Search finished. Found 8 entity sources, 12 address sources, 5 negative news sources. Total sources: 25
+2026-10-08 12:47:05 [INFO] aml_osdd: Launching 25 concurrent LLM source distillations (max 5 parallel)
+2026-10-08 12:47:05 [INFO] aml_osdd: Distilling [entity_search] source: https://www.opensanctions.org/entities/ofac-b0430aeb12352d21b4c28a66763f373a56fb1de1/
+2026-10-08 12:47:05 [INFO] aml_osdd: Distilling [entity_search] source: https://www.rahmanravelli.co.uk/expertise/cryptocurrency/articles/first-us-sanctions-against-a-cryptocurrency-exchange/
+2026-10-08 12:47:05 [INFO] aml_osdd: Distilling [entity_search] source: https://www.forensicblock.com/sanctions/entity/suex-otc-s-r-o
+2026-10-08 12:47:05 [INFO] aml_osdd: Distilling [entity_search] source: https://natlawreview.com/article/ofac-issues-updated-ransomware-advisory-and-designates-virtual-currency-exchange
+2026-10-08 12:47:05 [INFO] aml_osdd: Distilling [entity_search] source: https://www.federalregister.gov/documents/2021/09/24/2021-20745/notice-of-ofac-sanctions-action
+2026-10-08 12:47:35 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jdsupra.com/legalnews/ofac-issues-additional-ransomware-8884436/
+2026-10-08 12:47:43 [WARNING] aml_osdd: Fallback text extraction for https://www.rahmanravelli.co.uk/expertise/cryptocurrency/articles/first-us-sanctions-against-a-cryptocurrency-exchange/ due to parsing note: Failed to parse SectionDistillation from completion {"findings": "The US Treasury Department has sanctioned Suex OTC, S.R.O. (Suex) for allegedly facilitating illegal cryptocurrency transactions, including those involving ransomware attacks. Suex is an OTC broker registered in the Czech Republic but operates out of Russia. The sanctions block US citizens and companies from doing business with Suex, and transactions with entities on OFAC's sanctioned SDN list can lead to penalties including fines and imprisonment. Suex has received over $160 million in bitcoin from illicit and high-risk sources since 2018, with a significant portion of its transaction volume linked to cybercrime activities such as ransomware attacks and darknet markets.", "identified_addresses": null, "identified_related_entities": ["SUEX OTC, S.R.O.", "US Treasury Department", "OFAC"], "negative_news_identified": true, "negative_news_details": "The US Treasury Department has sanctioned Suex OTC, S.R.O. (Suex) for facilitating illegal cryptocurrency transactions, including those involving ransomware attacks.", "sanction_or_pep_flags": "SDN"}. Got: 1 validation error for SectionDistillation
+identified_addresses
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:47:43 [INFO] aml_osdd: Distilling [entity_search] source: https://www.legal500.com/intelligence/united-states/technology/in-a-first-us-treasury-department-sanctions-virtual-currency-exchange
+2026-10-08 12:47:50 [WARNING] aml_osdd: Fallback text extraction for https://natlawreview.com/article/ofac-issues-updated-ransomware-advisory-and-designates-virtual-currency-exchange due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:47:50 [INFO] aml_osdd: Distilling [entity_search] source: https://blockchainanalysis.io/pt/top-wallets/bitcoin/sanctioned/1b64qrxfaa35mvkf7sdjuguyap5izqt7qi
+2026-10-08 12:47:52 [WARNING] aml_osdd: Fallback text extraction for https://www.federalregister.gov/documents/2021/09/24/2021-20745/notice-of-ofac-sanctions-action due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:47:52 [INFO] aml_osdd: Distilling [address_search] source: https://open.spotify.com/artist/0RViEWnZO2VhmY4oI0PhF9
+2026-10-08 12:48:16 [INFO] aml_osdd: Distilling [address_search] source: https://www.instagram.com/mestomusic/?hl=en
+2026-10-08 12:48:18 [INFO] aml_osdd: Distilling [address_search] source: https://x.com/mestomusic?lang=en
+2026-10-08 12:48:27 [INFO] aml_osdd: Distilling [address_search] source: https://wa.me/420778041121
+2026-10-08 12:48:29 [INFO] aml_osdd: Distilling [address_search] source: https://www.inlobby.com/en/hotels/r/4988624/antik-city-hotel-4988624.html
+2026-10-08 12:48:45 [INFO] aml_osdd: Distilling [address_search] source: https://soundcloud.com/mestomusic
+2026-10-08 12:48:54 [WARNING] aml_osdd: Fallback text extraction for https://www.jdsupra.com/legalnews/ofac-issues-additional-ransomware-8884436/ due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:48:54 [INFO] aml_osdd: Distilling [address_search] source: https://en.wikipedia.org/wiki/Mesto
+2026-10-08 12:49:02 [INFO] aml_osdd: Distilling [address_search] source: https://en.firmy.cz/unverified-company/101604985-free-praha.html
+2026-10-08 12:49:08 [WARNING] aml_osdd: Fallback text extraction for https://blockchainanalysis.io/pt/top-wallets/bitcoin/sanctioned/1b64qrxfaa35mvkf7sdjuguyap5izqt7qi due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:49:08 [INFO] aml_osdd: Distilling [address_search] source: https://www.airbnb.com.mt/rooms/680905879123633176
+2026-10-08 12:49:20 [INFO] aml_osdd: Distilling [address_search] source: https://mesto.de/en/?srsltid=AU7gw4VyihT7tV2lk0VNMJAuQaGRjkS5LvTVurl7lu7X9ij8EacVA6u1
+2026-10-08 12:49:22 [INFO] aml_osdd: Distilling [address_search] source: https://www.mesto.org/
+2026-10-08 12:49:23 [INFO] aml_osdd: Distilling [address_search] source: https://www.smliv.com/locations/prague-czech-republic/
+2026-10-08 12:49:31 [INFO] aml_osdd: Distilling [negative_news_search] source: https://home.treasury.gov/news/press-releases/jy0364
+2026-10-08 12:49:31 [INFO] aml_osdd: Distilling [negative_news_search] source: https://sanctionssearch.ofac.treas.gov/Details.aspx?id=33151
+2026-10-08 12:49:38 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.sheppard.com/insights/blogs/first-ofac-sanctions-against-cryptocurrency-exchange
+2026-10-08 12:49:41 [WARNING] aml_osdd: Fallback text extraction for https://www.inlobby.com/en/hotels/r/4988624/antik-city-hotel-4988624.html due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:49:41 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.jdsupra.com/topics/ransomware/popular/money-laundering/
+2026-10-08 12:49:45 [INFO] aml_osdd: Distilling [negative_news_search] source: https://ielrblog.com/index.php/tag/suex-otc/
+2026-10-08 12:50:55 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-08 12:50:55 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-08 12:53:29 [INFO] aml_osdd: Incoming /api/analyze request: entity='SUEX OTC, S.R.O', address='Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:53:29 [INFO] aml_osdd: Starting OSDD search collection for entity: 'SUEX OTC, S.R.O', address: 'Skorepka 1058/8 Stare Mesto, Prague 110 00, Czech Republic'
+2026-10-08 12:53:29 [INFO] aml_osdd: Search finished. Found 8 entity sources, 12 address sources, 5 negative news sources. Total sources: 25
+2026-10-08 12:53:29 [INFO] aml_osdd: Launching 25 concurrent LLM source distillations (max 5 parallel)
+2026-10-08 12:53:29 [INFO] aml_osdd: Distilling [entity_search] source: https://www.opensanctions.org/entities/ofac-b0430aeb12352d21b4c28a66763f373a56fb1de1/
+2026-10-08 12:53:29 [INFO] aml_osdd: Distilling [entity_search] source: https://www.rahmanravelli.co.uk/expertise/cryptocurrency/articles/first-us-sanctions-against-a-cryptocurrency-exchange/
+2026-10-08 12:53:29 [INFO] aml_osdd: Distilling [entity_search] source: https://www.forensicblock.com/sanctions/entity/suex-otc-s-r-o
+2026-10-08 12:53:29 [INFO] aml_osdd: Distilling [entity_search] source: https://natlawreview.com/article/ofac-issues-updated-ransomware-advisory-and-designates-virtual-currency-exchange
+2026-10-08 12:53:29 [INFO] aml_osdd: Distilling [entity_search] source: https://www.federalregister.gov/documents/2021/09/24/2021-20745/notice-of-ofac-sanctions-action
+2026-10-08 12:53:59 [INFO] aml_osdd: Distilling [entity_search] source: https://www.jdsupra.com/legalnews/ofac-issues-additional-ransomware-8884436/
+2026-10-08 12:54:12 [WARNING] aml_osdd: Fallback text extraction for https://www.forensicblock.com/sanctions/entity/suex-otc-s-r-o due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:54:12 [INFO] aml_osdd: Distilling [entity_search] source: https://www.legal500.com/intelligence/united-states/technology/in-a-first-us-treasury-department-sanctions-virtual-currency-exchange
+2026-10-08 12:54:12 [WARNING] aml_osdd: Fallback text extraction for https://natlawreview.com/article/ofac-issues-updated-ransomware-advisory-and-designates-virtual-currency-exchange due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:54:12 [INFO] aml_osdd: Distilling [entity_search] source: https://blockchainanalysis.io/pt/top-wallets/bitcoin/sanctioned/1b64qrxfaa35mvkf7sdjuguyap5izqt7qi
+2026-10-08 12:54:13 [WARNING] aml_osdd: Fallback text extraction for https://www.federalregister.gov/documents/2021/09/24/2021-20745/notice-of-ofac-sanctions-action due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:54:13 [INFO] aml_osdd: Distilling [address_search] source: https://open.spotify.com/artist/0RViEWnZO2VhmY4oI0PhF9
+2026-10-08 12:54:14 [WARNING] aml_osdd: Fallback text extraction for https://www.rahmanravelli.co.uk/expertise/cryptocurrency/articles/first-us-sanctions-against-a-cryptocurrency-exchange/ due to parsing note: Failed to parse SectionDistillation from completion {"findings": "The US Treasury Department has sanctioned Suex OTC, S.R.O. (Suex) for allegedly facilitating illegal cryptocurrency transactions involving ransomware attackers. Suex is a cryptocurrency OTC broker registered in the Czech Republic but operates out of Russia. The sanctions include blocking US citizens and companies from doing business with Suex, and the Treasury’s Office of Foreign Asset Control (OFAC) is in charge of the sanctioned SDN list. Suex has received over $160 million in bitcoin from illicit and high-risk sources since 2018, including from ransomware attacks and darknet markets.", "identified_addresses": null, "identified_related_entities": ["Suex OTC, S.R.O. (Suex)", "US Treasury Department", "OFAC"], "negative_news_identified": true, "negative_news_details": "The US Treasury Department has sanctioned Suex OTC, S.R.O. (Suex) as part of a broader crackdown on ransomware attacks and cryptocurrency-based money laundering. The sanctions block US citizens and companies from doing business with Suex, and the Treasury’s Office of Foreign Asset Control (OFAC) is in charge of the sanctioned SDN list. Suex has received over $160 million in bitcoin from illicit and high-risk sources since 2018, including from ransomware attacks and darknet markets.", "sanction_or_pep_flags": "SDN"}. Got: 1 validation error for SectionDistillation
+identified_addresses
+  Input should be a valid list [type=list_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:54:14 [INFO] aml_osdd: Distilling [address_search] source: https://www.instagram.com/mestomusic/?hl=en
+2026-10-08 12:54:20 [INFO] aml_osdd: Distilling [address_search] source: https://x.com/mestomusic?lang=en
+2026-10-08 12:54:23 [INFO] aml_osdd: Distilling [address_search] source: https://wa.me/420778041121
+2026-10-08 12:54:44 [INFO] aml_osdd: Distilling [address_search] source: https://www.inlobby.com/en/hotels/r/4988624/antik-city-hotel-4988624.html
+2026-10-08 12:54:48 [INFO] aml_osdd: Distilling [address_search] source: https://soundcloud.com/mestomusic
+2026-10-08 12:55:06 [INFO] aml_osdd: Distilling [address_search] source: https://en.wikipedia.org/wiki/Mesto
+2026-10-08 12:55:14 [WARNING] aml_osdd: Fallback text extraction for https://x.com/mestomusic?lang=en due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:55:14 [INFO] aml_osdd: Distilling [address_search] source: https://en.firmy.cz/unverified-company/101604985-free-praha.html
+2026-10-08 12:55:22 [WARNING] aml_osdd: Fallback text extraction for https://blockchainanalysis.io/pt/top-wallets/bitcoin/sanctioned/1b64qrxfaa35mvkf7sdjuguyap5izqt7qi due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:55:22 [INFO] aml_osdd: Distilling [address_search] source: https://www.airbnb.com.mt/rooms/680905879123633176
+2026-10-08 12:55:25 [INFO] aml_osdd: Distilling [address_search] source: https://mesto.de/en/?srsltid=AU7gw4VyihT7tV2lk0VNMJAuQaGRjkS5LvTVurl7lu7X9ij8EacVA6u1
+2026-10-08 12:55:26 [INFO] aml_osdd: Distilling [address_search] source: https://www.mesto.org/
+2026-10-08 12:55:30 [INFO] aml_osdd: Distilling [address_search] source: https://www.smliv.com/locations/prague-czech-republic/
+2026-10-08 12:55:34 [INFO] aml_osdd: Distilling [negative_news_search] source: https://home.treasury.gov/news/press-releases/jy0364
+2026-10-08 12:55:38 [INFO] aml_osdd: Distilling [negative_news_search] source: https://sanctionssearch.ofac.treas.gov/Details.aspx?id=33151
+2026-10-08 12:55:42 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.sheppard.com/insights/blogs/first-ofac-sanctions-against-cryptocurrency-exchange
+2026-10-08 12:55:43 [WARNING] aml_osdd: Fallback text extraction for https://www.inlobby.com/en/hotels/r/4988624/antik-city-hotel-4988624.html due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:55:43 [INFO] aml_osdd: Distilling [negative_news_search] source: https://www.jdsupra.com/topics/ransomware/popular/money-laundering/
+2026-10-08 12:55:53 [WARNING] aml_osdd: Fallback text extraction for https://home.treasury.gov/news/press-releases/jy0364 due to parsing note: Invalid json output: {
+  "findings": "SUEX OTC, S.R.O. has been designated by OFAC for facilitating financial transactions for ransomware actors, including transactions involving illicit proceeds from at least eight ransomware variants.",
+  "identified_addresses": [],
+  "identified_related_entities": ["SUEX OTC, S.R.O."],
+  "negative_news_identified": true,
+  "negative_news_details": "Designation of First Virtual Currency Exchange for Complicit Financial Services",
+  "sanction_or_pep_flags": "SUEX OTC, S.R.O. is designated for sanctions due to facilitating financial transactions for ransomware actors.",
+}
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:55:53 [INFO] aml_osdd: Distilling [negative_news_search] source: https://ielrblog.com/index.php/tag/suex-otc/
+2026-10-08 12:56:08 [WARNING] aml_osdd: Fallback text extraction for https://www.jdsupra.com/legalnews/ofac-issues-additional-ransomware-8884436/ due to parsing note: Failed to parse SectionDistillation from completion {"properties": {"findings": {"description": "Factual findings from this source relative to AML/KYC background", "title": "Findings", "type": "string"}, "identified_addresses": {"items": {"type": "string"}, "title": "Identified Addresses", "type": "array"}, "identified_related_entities": {"items": {"type": "string"}, "title": "Identified Related Entities", "type": "array"}, "negative_news_identified": {"default": false, "title": "Negative News Identified", "type": "boolean"}, "negative_news_details": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Negative News Details"}, "sanction_or_pep_flags": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Sanction Or Pep Flags"}}, "required": ["findings"]}. Got: 1 validation error for SectionDistillation
+findings
+  Field required [type=missing, input_value={'properties': {'findings...required': ['findings']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE 
+2026-10-08 12:56:48 [INFO] aml_osdd: Source distillation phase completed.
+2026-10-08 12:56:48 [INFO] aml_osdd: Synthesizing final AML OSDD risk assessment with LangChain ChatOllama
+2026-10-08 12:58:49 [INFO] aml_osdd: OSDD assessment complete for 'SUEX OTC, S.R.O'. Risk Level: High, Score: 85
