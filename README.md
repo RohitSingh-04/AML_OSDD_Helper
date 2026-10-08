@@ -4,6 +4,12 @@ An AI-powered Open Source Due Diligence (OSDD) analyzer built with **FastAPI, Se
 
 The application searches public sources, extracts information from HTML/PDF/YouTube sources, concurrently distills findings into structured observations, and synthesizes a comprehensive final OSDD risk assessment. It now includes a web dashboard for easier interaction.
 
+## Demo
+
+[![AML OSDD Analyzer Demo](https://img.youtube.com/vi/utdR_B4uJk0/0.jpg)](https://youtu.be/utdR_B4uJk0)
+
+*Click the image above or [here](https://youtu.be/utdR_B4uJk0) to watch the demo video on YouTube.*
+
 ## Architecture
 
 The system utilizes a Map-Reduce LLM pattern to handle large volumes of context efficiently, governed by local concurrency limits (Semaphores) to prevent Ollama from overloading.
@@ -149,7 +155,7 @@ OLLAMA_CONCURRENCY_LIMIT=int of concurrent request of ollama
 |---|---|
 | `SERPAPI_API_KEY` | API key used for Google and YouTube searches |
 | `OLLAMA_MODEL` | Ollama model used by the application (e.g., `dolphin3:latest`) |
-| `OLLAMA_CONCURRENCY_LIMIT`| Controls how many parallel LLM distillation tasks run at once (e.g., `3`) |
+| `OLLAMA_CONCURRENCY_LIMIT` | Controls how many parallel LLM distillation tasks run at once (e.g., `3`) |
 
 Check installed Ollama models with:
 
@@ -157,12 +163,6 @@ Check installed Ollama models with:
 ollama list
 ```
 
-Make sure the Ollama is served in same virtual environment with multiple parallel requests for optimal results.
-
-```bash
- $env:OLLAMA_NUM_PARALLEL="8"
- ollama serve
-```
 ## Running the Application
 
 Start the FastAPI development server using `uv`:
@@ -183,6 +183,7 @@ uv run uvicorn src.aml_osdd_helper.main:app --reload
 ## API Usage
 
 ### `GET /`
+
 Serves the web dashboard (HTML UI) where you can input entity details and view the generated report visually.
 
 ### `POST /api/analyze`
