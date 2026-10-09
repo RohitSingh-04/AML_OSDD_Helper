@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 benchmarks/
+logs/
 
 *.egg-info
 
